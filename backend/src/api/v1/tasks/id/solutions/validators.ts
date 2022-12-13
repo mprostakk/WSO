@@ -15,7 +15,7 @@ const post = createValidator<Solutions.Post>({
     taskId: Joi.string().min(24).max(24).required(),
   },
   body: {
-    stdin: Joi.string().min(10).max(65536).required(),
+    code: Joi.string().min(1).max(65536).required(),
   },
   query: {},
 });

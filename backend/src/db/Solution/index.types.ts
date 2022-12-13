@@ -4,7 +4,7 @@ import { UnitTestResult } from "./UnitTestResult/index.types";
 export interface Solution {
   taskId: string;
   accountId: string;
-  stdin: string;
+  code: string;
   unitTestsResults: UnitTestResult[];
 }
 

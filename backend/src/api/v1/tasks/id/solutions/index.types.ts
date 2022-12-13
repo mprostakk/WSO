@@ -18,7 +18,7 @@ export type Solutions<
 export namespace Solutions {
   export type Post = Solutions<
     {},
-    { stdin: string },
+    { code: string },
     {},
     { solution: Solution }
   >;

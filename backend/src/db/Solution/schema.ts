@@ -6,7 +6,7 @@ const SolutionSchema: Solution.Schema = new mongoose.Schema(
   {
     taskId: { type: String, required: true },
     accountId: { type: String, required: true },
-    stdin: { type: String, required: true },
+    code: { type: String, required: true },
     unitTestsResults: { type: [UnitTestResultSchema], required: true },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
