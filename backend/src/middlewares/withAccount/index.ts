@@ -1,7 +1,6 @@
 import Express from "express";
 
 const withAccount = async (
-  err: any,
   req: Express.Request,
   res: Express.Response<{}, { account: { id: string } }>,
   next: Express.NextFunction

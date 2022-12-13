@@ -12,7 +12,7 @@ export type Id<
   {} & REQ_BODY,
   {} & REQ_QUERY,
   {} & RES_PAYLOAD,
-  { task: Task } & RES_LOCALS
+  { taskDocument: Task.Document } & RES_LOCALS
 >;
 
 export namespace Id {

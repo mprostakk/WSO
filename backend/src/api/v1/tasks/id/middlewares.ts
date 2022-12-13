@@ -12,9 +12,9 @@ const withTask = async (
     const { taskId } = params;
     const {} = body;
     const {} = query;
-    const task = await TaskModel.findById(taskId);
-    if (!task) throw new Error(`Not found task by id: '${taskId}'`);
-    res.locals = { ...res.locals, task };
+    const taskDocument = await TaskModel.findById(taskId);
+    if (!taskDocument) throw new Error(`Not found task by id: '${taskId}'`);
+    res.locals = { ...res.locals, taskDocument };
     next();
   } catch (error) {
     next(error);

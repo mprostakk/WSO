@@ -14,7 +14,8 @@ class IdController {
     const {} = body;
     const {} = query;
     const { locals } = res;
-    const { task } = locals;
+    const { taskDocument } = locals;
+    const task = taskDocument.toObject();
 
     res.status(200).json(success({ task }));
   }

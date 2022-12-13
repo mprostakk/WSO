@@ -2,6 +2,7 @@ import Express from "express";
 import { Controller, success } from "../../../../../common";
 import SolutionModel from "../../../../../db/Solution";
 import { Solutions } from "./index.types";
+import { Solution } from "../../../../../db/Solution/index.types";
 
 class SolutionsController {
   @Controller
@@ -15,9 +16,10 @@ class SolutionsController {
     const { stdin } = body;
     const {} = query;
     const { locals } = res;
-    const { task, account } = locals;
+    const { taskDocument, account } = locals;
     // TODO
-    const solutionDocument = new SolutionModel({}); // TODO
+
+    const solutionDocument = new SolutionModel<Solution>({}); // TODO
     await solutionDocument.save();
     const solution = solutionDocument.toObject();
 
