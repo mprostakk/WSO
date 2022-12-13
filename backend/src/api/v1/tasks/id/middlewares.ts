@@ -8,9 +8,8 @@ const withTask = async (
   next: Express.NextFunction
 ) => {
   try {
-    const { query, params, body } = req;
+    const { query, params } = req;
     const { taskId } = params;
-    const {} = body;
     const {} = query;
     const taskDocument = await TaskModel.findById(taskId);
     if (!taskDocument) throw new Error(`Not found task by id: '${taskId}'`);

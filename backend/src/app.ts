@@ -8,6 +8,8 @@ const port = 3000;
 
 db.run();
 
+app.use(express.json());
+
 app.use("/api", apiRouter);
 
 app.get("/healthcheck", (req, res, next) => {

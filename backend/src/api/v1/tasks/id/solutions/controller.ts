@@ -4,6 +4,7 @@ import SolutionModel from "../../../../../db/Solution";
 import { Solutions } from "./index.types";
 import { Solution } from "../../../../../db/Solution/index.types";
 import axios from "axios";
+import { UnitTestResult } from "../../../../../db/Solution/UnitTestResult/index.types";
 
 class SolutionsController {
   @Controller
@@ -19,7 +20,7 @@ class SolutionsController {
     const { locals } = res;
     const { taskDocument, account } = locals;
     
-    var testResults = [];
+    var testResults: UnitTestResult[] = [];
     for (const testCase of taskDocument.unitTests) {
       const data = {
         language: "python",
@@ -38,14 +39,19 @@ class SolutionsController {
         run_memory_limit: -1,
       };
       const response = await axios.post("http://piston:2000/api/v2/execute", data);
-      // testResults.push(new UnitTestResult<UnitTestResult>())
+      const isPassed = response.data.run.output === testCase.stdout;
+      testResults.push({
+        isPassed,
+        runtime: 1,
+        usedMemory: 1
+      })
     }
 
     const solutionDocument = new SolutionModel<Solution>({
       taskId: taskDocument.id,
       accountId: account.id,
       code: code,
-      unitTestsResults: []
+      unitTestsResults: testResults
     });
     await solutionDocument.save();
     const solution = solutionDocument.toObject();

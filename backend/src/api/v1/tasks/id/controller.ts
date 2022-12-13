@@ -9,14 +9,18 @@ class IdController {
     res: Id.Get["response"],
     next: Express.NextFunction
   ) {
-    const { query, params, body } = req;
+    const { query, params } = req;
     const {} = params;
     const {} = query;
     const { locals } = res;
     const { taskDocument } = locals;
     const task = taskDocument.toObject();
+    const taskWithOneUnitTest = {
+      ...task,
+      unitTests: [task.unitTests[0]]
+    }
 
-    res.status(200).json(success({ task }));
+    res.status(200).json(success({ task: taskWithOneUnitTest }));
   }
 }
 

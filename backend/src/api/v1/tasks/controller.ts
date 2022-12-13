@@ -14,8 +14,14 @@ class TasksController {
     const {} = params;
     const {} = query;
 
-    const tasks = await TaskModel.find();
-    res.status(200).json(success({ tasks }));
+    const tasksDocuments = await TaskModel.find();
+    const tasks = tasksDocuments.map(taskDocument => taskDocument.toObject())
+    const tasksWithOneUnitTest = tasks.map(task => ({
+      ...task,
+      unitTests: [task.unitTests[0]]
+    }))
+
+    res.status(200).json(success({ tasks: tasksWithOneUnitTest }));
   }
 }
 

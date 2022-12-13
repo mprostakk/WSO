@@ -9,7 +9,7 @@ class Database {
   constructor() {}
 
   public run = async (): Promise<void> => {
-    //await this.connect();
+    await this.connect();
   };
 
   public getStatus = () => {
