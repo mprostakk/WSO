@@ -10,12 +10,12 @@ services:
     tmpfs:
       - /piston/jobs:exec,uid=1000,gid=1000,mode=711
       - /tmp:exec
-  api:
-    build: api
+  backend:
+    build: backend
     command: nodemon ./server.ts
     ports:
-      - 3000:3000
+      - 8000:3000
     volumes:
-      - ./api:/usr/src/app
+      - ./backend:/usr/src/app
     depends_on:
       - piston
