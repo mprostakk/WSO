@@ -15,15 +15,16 @@ export type Endpoint<
   REQ_PARAMS extends {} = {},
   REQ_BODY extends {} = {},
   REQ_QUERY extends {} = {},
-  RES_PAYLOAD extends {} = {}
+  RES_PAYLOAD extends {} = {},
+  RES_LOCALS extends {} = {}
 > = {
   request: Express.Request<
     REQ_PARAMS,
-    REQ_BODY,
     ResBody<RES_PAYLOAD>,
+    REQ_BODY,
     REQ_QUERY
   >;
-  response: Express.Response<ResBody<RES_PAYLOAD>>;
+  response: Express.Response<ResBody<RES_PAYLOAD>, RES_LOCALS>;
 };
 
 export type NoExtraProperties<T, U extends T = T> = U &
@@ -54,14 +55,18 @@ export type ValidatorInputSchema<P extends {}, B extends {}, Q extends {}> = {
   body: SchemaMap<B>;
 };
 
-export const createValidator = <R extends Express.Request>(
-  inputSchema: ValidatorInputSchema<R["params"], R["body"], R["query"]>
+export const createValidator = <E extends Endpoint>(
+  inputSchema: ValidatorInputSchema<
+    E["request"]["params"],
+    E["request"]["body"],
+    E["request"]["query"]
+  >
 ) => {
   const { params, headers, query, cookies, signedCookies, body } = inputSchema;
   return validate({
     params: Joi.object(params),
     headers: Joi.object(headers).unknown(),
-    query: Joi.object({}),
+    query: Joi.object(query),
     cookies: Joi.object(cookies),
     signedCookies: Joi.object(signedCookies),
     body: body ? Joi.object(body) : Joi.any(),

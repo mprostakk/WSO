@@ -1,12 +1,19 @@
-import Joi from "joi";
 import { createValidator } from "../../../common";
+import { Tasks } from "./index.types";
 
-const getTasks = createValidator({
+const all = createValidator<Tasks>({
+  params: {},
+  body: {},
+  query: {},
+});
+
+const get = createValidator<Tasks.Get>({
   params: {},
   body: {},
   query: {},
 });
 
 export default {
-  getTasks,
+  all,
+  get,
 };

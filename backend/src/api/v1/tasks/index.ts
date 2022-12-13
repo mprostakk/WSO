@@ -1,13 +1,14 @@
 import express from "express";
-import TasksController from "./controllers";
-import solutionsRouter from "./solutions";
+import TasksController from "./controller";
+import idRouter from "./id";
+import validators from "./validators";
 
 const tasksRouter = express.Router({});
 
-tasksRouter.get("/", TasksController.getTasks);
+tasksRouter.all("*", validators.all);
 
-tasksRouter.get("/:taskId", TasksController.getTask);
+tasksRouter.use("/id/:taskId", idRouter);
 
-tasksRouter.use("/:taskId/solutions", solutionsRouter);
+tasksRouter.get("/", validators.get, TasksController.get);
 
 export default tasksRouter;
