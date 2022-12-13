@@ -11,7 +11,6 @@ class IdController {
   ) {
     const { query, params, body } = req;
     const {} = params;
-    const {} = body;
     const {} = query;
     const { locals } = res;
     const { taskDocument } = locals;

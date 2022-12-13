@@ -5,8 +5,6 @@ import validators from "./validators";
 
 const tasksRouter = express.Router({});
 
-tasksRouter.all("*", validators.all);
-
 tasksRouter.use("/id/:taskId", idRouter);
 
 tasksRouter.get("/", validators.get, TasksController.get);

@@ -10,9 +10,8 @@ class TasksController {
     res: Tasks.Get["response"],
     next: Express.NextFunction
   ) {
-    const { query, params, body } = req;
+    const { query, params } = req;
     const {} = params;
-    const {} = body;
     const {} = query;
 
     const tasks = await TaskModel.find();

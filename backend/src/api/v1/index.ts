@@ -5,7 +5,7 @@ import validators from "./validators";
 
 const v1Router = express.Router({});
 
-v1Router.all("*", validators.all);
+//v1Router.all("*", validators.all);
 
 v1Router.use(withAccount);
 

@@ -6,8 +6,6 @@ import validators from "./validators";
 
 const idRouter = express.Router({ mergeParams: true });
 
-idRouter.all("*", validators.all);
-
 idRouter.use(middlewares.withTask);
 
 idRouter.use("/solutions", solutionsRouter);
