@@ -1,2 +1,56 @@
 .Course {
+  flex: 0 1 33%;
+  overflow: hidden;
+  flex-direction: column;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+
+  & > .illustration {
+    background: #ffd9a8;
+    aspect-ratio: 7 / 5;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 30px;
+    box-sizing: border-box;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  & > .details {
+    padding: 15px;
+    flex-direction: column;
+    gap: 25px;
+
+    .progress-info {
+      background: #f7f7f7;
+      padding: 15px 10px;
+      flex-direction: column;
+      gap: 5px;
+      border-radius: 10px;
+
+      progress {
+        width: 100%;
+        accent-color: #ffcd5c;
+      }
+
+      .details {
+        justify-content: space-between;
+        font-size: 13px;
+
+        .property {
+          gap: 5px;
+
+          .key {
+            &::after {
+              content: ":";
+            }
+          }
+        }
+      }
+    }
+  }
 }

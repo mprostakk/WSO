@@ -1,2 +1,8 @@
 .Courses {
+  flex-direction: column;
+  gap: 15px;
+
+  .items {
+    gap: 20px;
+  }
 }

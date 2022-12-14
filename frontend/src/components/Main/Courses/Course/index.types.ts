@@ -2,7 +2,9 @@ export type StateProps = {};
 
 export type DispatchProps = {};
 
-export type OwnProps = {};
+export type OwnProps = {
+  accentColor: string;
+};
 
 export type Props = StateProps & OwnProps & DispatchProps;
 

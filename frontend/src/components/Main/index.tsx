@@ -14,7 +14,7 @@ class Main extends React.Component<Props, State> {
   public render = () => {
     return (
       <main className={`${this.constructor.name}`}>
-        <div>
+        <div className="content">
           <Courses />
           <Tasks />
         </div>

@@ -1,2 +1,12 @@
 .Sidebar {
+  width: 350px;
+  flex-direction: column;
+  gap: 25px;
+
+  & > .sticky {
+    flex-direction: column;
+    gap: 25px;
+    position: sticky;
+    top: 25px;
+  }
 }

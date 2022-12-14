@@ -1,2 +1,57 @@
 .Nav {
+  flex-basis: 20%;
+  height: 100vh;
+  padding: 25px;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  flex-direction: column;
+  gap: 45px;
+
+  header {
+    .logo {
+      width: 70%;
+    }
+  }
+
+  .menu {
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+
+    button {
+      text-align: left;
+      background: transparent;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          font-size: 20px;
+        }
+      }
+
+      &.selected {
+        background: #fef6df;
+
+        .icon {
+          background: #ffd573;
+        }
+      }
+
+      &:not(.selected) {
+        color: #8895a4;
+      }
+    }
+  }
 }

@@ -1,11 +1,79 @@
+* {
+  font-family: "Rubik", sans-serif;
+  outline: none;
+  text-shadow: 0 0 1px #bfbfbf;
+}
+
+html,
+body,
+#root,
+.App {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: "Rubik", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+body,
+button,
+input {
+  color: #2f3b49;
+}
+
+#root {
+  flex: 1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+img {
+  max-width: 100%;
+}
+
+div,
+nav,
+main,
+header {
+  display: flex;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: 0.2px;
+}
+
+button {
+  background: #feda84;
+  border: none;
+  padding: 15px 18px;
+  border-radius: 10px;
+  transition: 0.15s;
+}
+
+button:hover {
+  filter: brightness(1.05);
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.box {
+  box-shadow: 0px 3px 8px 2px rgb(214 214 214 / 20%);
 }

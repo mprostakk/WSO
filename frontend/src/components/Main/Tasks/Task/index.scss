@@ -1,2 +1,45 @@
 .Task {
+  background: white;
+  border-radius: 15px;
+  padding: 10px;
+  align-items: center;
+  gap: 18px;
+
+  .icon {
+    width: 65px;
+    height: 65px;
+    background: #f5f5f3;
+    border-radius: 15px;
+  }
+
+  .name {
+    flex: 1;
+    h4 {
+      font-weight: normal;
+      font-size: 17px;
+    }
+  }
+
+  .rate {
+    padding: 0 10px;
+    gap: 5px;
+    align-items: center;
+
+    svg {
+      color: #fad680;
+    }
+  }
+
+  .details {
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 6px;
+
+    & > div {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: black;
+    }
+  }
 }

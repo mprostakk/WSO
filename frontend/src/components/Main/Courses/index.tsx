@@ -12,10 +12,18 @@ class Courses extends React.Component<Props, State> {
   public render = () => {
     return (
       <div className={`${this.constructor.name}`}>
-        <h2>Courses</h2>
-        {[].map((course) => (
-          <Course />
-        ))}
+        <div>
+          <h2>Courses</h2>
+        </div>
+        <div className="items">
+          {[
+            { accentColor: "#ffd9a8" },
+            { accentColor: "#fdbc94" },
+            { accentColor: "#fdafaf" },
+          ].map(({ accentColor }) => (
+            <Course accentColor={accentColor} />
+          ))}
+        </div>
       </div>
     );
   };

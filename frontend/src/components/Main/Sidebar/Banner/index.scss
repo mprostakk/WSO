@@ -1,2 +1,56 @@
 .Banner {
+  background: white;
+  aspect-ratio: 5 / 3;
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+
+  &::before,
+  &::after {
+    width: 80%;
+    height: 30px;
+    background: #eeeeec;
+    display: flex;
+    content: "";
+    position: absolute;
+    z-index: 100;
+  }
+
+  &::before {
+    top: -22px;
+    border-radius: 0 0 50% 50%;
+  }
+
+  &::after {
+    bottom: -22px;
+    border-radius: 50% 50% 0 0;
+  }
+
+  .illustration {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    svg {
+      transform: translateX(-15%);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .safe-area {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+
+    .content {
+      flex-direction: column;
+    }
+  }
 }

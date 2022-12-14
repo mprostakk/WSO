@@ -12,8 +12,10 @@ class Tasks extends React.Component<Props, State> {
   public render = () => {
     return (
       <div className={`${this.constructor.name}`}>
-        <h2>Tasks</h2>
-        {[].map((task) => (
+        <div>
+          <h2>Tasks</h2>
+        </div>
+        {[1, 2, 3, 4, 5].map((task) => (
           <Task />
         ))}
       </div>

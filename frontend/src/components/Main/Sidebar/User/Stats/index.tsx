@@ -9,7 +9,16 @@ class Stats extends React.Component<Props, State> {
   }
 
   public render = () => {
-    return <div className={`${this.constructor.name}`}></div>;
+    return (
+      <div className={`${this.constructor.name}`}>
+        {[1, 2, 3, 4].map((e) => (
+          <div className={`stat box`}>
+            <h1>24</h1>
+            <span>Courses completed</span>
+          </div>
+        ))}
+      </div>
+    );
   };
 }
 
