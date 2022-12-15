@@ -2,44 +2,132 @@
   background: white;
   border-radius: 15px;
   padding: 10px;
-  align-items: center;
-  gap: 18px;
+  flex-direction: column;
+  gap: 10px;
 
-  .icon {
-    width: 65px;
-    height: 65px;
-    background: #f5f5f3;
-    border-radius: 15px;
-  }
-
-  .name {
-    flex: 1;
-    h4 {
-      font-weight: normal;
-      font-size: 17px;
-    }
-  }
-
-  .rate {
-    padding: 0 10px;
-    gap: 5px;
+  .brief {
     align-items: center;
+    gap: 18px;
 
-    svg {
-      color: #fad680;
+    .icon {
+      width: 65px;
+      height: 65px;
+      background: #f5f5f3;
+      border-radius: 15px;
+    }
+
+    .name {
+      flex: 1;
+
+      h4 {
+        font-size: 17px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+      }
+    }
+
+    .rate {
+      padding: 0 10px;
+      gap: 5px;
+      align-items: center;
+
+      svg {
+        color: #fad680;
+      }
+    }
+
+    .action {
+      label {
+        user-select: none;
+
+        input[type="checkbox"] {
+          appearance: none;
+        }
+
+        &:has(input:checked) {
+          filter: brightness(0.9);
+
+          &::after {
+            content: "Hide Task";
+          }
+        }
+
+        &::after {
+          content: "View Task";
+        }
+      }
+    }
+
+    .options {
+      flex-direction: column;
+      padding: 0 10px;
+      gap: 6px;
+
+      & > div {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: black;
+      }
     }
   }
 
   .details {
-    flex-direction: column;
-    padding: 0 10px;
-    gap: 6px;
+    border-top: 1px solid #e3e3e2;
+    padding: 10px 0;
 
     & > div {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: black;
+      padding: 0 10px;
+      gap: 10px;
+      flex: 1;
+      gap: 10px;
+
+      .properties {
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+
+        .property {
+          flex-direction: column;
+        }
+      }
+
+      .solution {
+        flex: 1;
+        flex-direction: column;
+        gap: 10px;
+
+        .result {
+          gap: 10px;
+          align-items: center;
+
+          button {
+            flex: 1;
+          }
+
+          .unit-tests-results {
+            flex: 1;
+            gap: 10px;
+
+            .unit-test-result {
+              width: 30px;
+              height: 30px;
+              border-radius: 5px;
+              background: #dadada;
+
+              &.passed {
+                background: #86ffcc;
+              }
+
+              &.not-passed {
+                background: #ff8686;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

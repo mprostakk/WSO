@@ -6,4 +6,6 @@ export type OwnProps = {};
 
 export type Props = StateProps & OwnProps & DispatchProps;
 
-export type State = {};
+export type State = {
+  isShowDetails: boolean;
+};

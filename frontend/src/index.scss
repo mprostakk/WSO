@@ -1,4 +1,13 @@
-* {
+body,
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   font-family: "Rubik", sans-serif;
   outline: none;
   text-shadow: 0 0 1px #bfbfbf;
@@ -57,7 +66,8 @@ h6 {
   letter-spacing: 0.2px;
 }
 
-button {
+button,
+label {
   background: #feda84;
   border: none;
   padding: 15px 18px;
@@ -65,12 +75,14 @@ button {
   transition: 0.15s;
 }
 
-button:hover {
+button:hover,
+label:hover {
   filter: brightness(1.05);
   cursor: pointer;
 }
 
-button:active {
+button:active,
+label:active {
   transform: scale(0.95);
 }
 
