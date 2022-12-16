@@ -6,6 +6,8 @@ const UnitTestResultSchema: UnitTestResult.Schema = new mongoose.Schema(
     isPassed: { type: Boolean, required: true },
     runtime: { type: Number, required: true },
     usedMemory: { type: Number, required: true },
+    returnCode: { type: Number, required: false },
+    signal: { type: String, required: false },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

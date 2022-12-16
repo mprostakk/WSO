@@ -6,7 +6,7 @@ import db from "./db";
 import cors from "cors";
 
 const app: Express = express();
-const port = 3000;
+const port = 8000;
 
 db.run();
 
@@ -33,12 +33,12 @@ app.get("/run", async (req: Request, res: Response) => {
     ],
     stdin: "",
     args: [],
-    compile_timeout: 10000,
+    compile_timeout: 3000,
     run_timeout: 3000,
-    compile_memory_limit: -1,
-    run_memory_limit: -1,
+    compile_memory_limit: 100,
+    run_memory_limit: 100,
   };
-  const response = await axios.post("http://piston:2000/api/v2/execute", data);
+  const response = await axios.post(`${process.env.PISTON_URI}/api/v2/execute`, data);
 
   res.status(200).json({ status: "success", pistonResponse: response.data });
 });

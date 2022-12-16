@@ -14,14 +14,24 @@ services:
     build: backend
     command: nodemon ./server.ts
     ports:
-      - 8000:3000
+      - 8000:8000
     environment:
       DB_URI: mongodb://root:example@mongo:27017
+      PISTON_URI: http://piston:2000
     volumes:
       - ./backend:/usr/src/app
     depends_on:
       - piston
       - mongo
+  frontend:
+    build: frontend
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/src/app
+    depends_on:
+      - backend
   mongo:
     image: mongo
     environment:

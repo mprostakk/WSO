@@ -6,6 +6,8 @@ import { Solution } from "../../../../../db/Solution/index.types";
 import axios from "axios";
 import { UnitTestResult } from "../../../../../db/Solution/UnitTestResult/index.types";
 
+require("custom-env").env(true);
+
 class SolutionsController {
   @Controller
   static async post(
@@ -35,15 +37,18 @@ class SolutionsController {
         args: [],
         compile_timeout: 3000,
         run_timeout: 3000,
-        compile_memory_limit: -1,
-        run_memory_limit: -1,
+        compile_memory_limit: 100,
+        run_memory_limit: 100,
       };
-      const response = await axios.post("http://piston:2000/api/v2/execute", data);
+      const response = await axios.post(`${process.env.PISTON_URI}/api/v2/execute`, data);
       const isPassed = response.data.run.output === testCase.stdout;
+      console.log(response.data.run)
       testResults.push({
         isPassed,
         runtime: 1,
-        usedMemory: 1
+        usedMemory: 1,
+        returnCode: response.data.run.code,
+        signal: response.data.run.signal,
       })
     }
 
