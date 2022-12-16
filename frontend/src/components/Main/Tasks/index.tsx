@@ -45,7 +45,9 @@ class Tasks extends React.Component<Props, State> {
   public render = () => {
     return (
       <LazyFetch<TasksEndpoint.Get>
-        onComponentDidMount={({ fetch }) => fetch({})}
+        onComponentDidMount={({ fetch }) =>
+          fetch({ headers: { Authorization: "123456" } })
+        }
         rawUrl={`/v1/tasks/`}
         method={"GET"}
         render={({ isLoading, data, error }) => (
@@ -53,7 +55,7 @@ class Tasks extends React.Component<Props, State> {
             <div>
               <h2>Tasks</h2>
             </div>
-            {tasks.map((task) => (
+            {data?.payload?.tasks.map((task) => (
               <TaskComponent task={task} />
             ))}
           </div>

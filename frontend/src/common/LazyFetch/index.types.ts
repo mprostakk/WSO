@@ -12,7 +12,7 @@ export type FetchFn<
   WB = IsEmptyObject<B> extends true ? { body?: never } : { body: B },
   WQ = IsEmptyObject<Q> extends true ? { query?: never } : { query: Q }
 > = (
-  requestPayload: WP & WB & WQ
+  requestPayload: WP & WB & WQ & { headers?: { [key: string]: string } }
 ) => Promise<E["response"]["body"] | undefined>;
 
 export type LazyFetchRenderProps<E extends Endpoint> = {

@@ -98,6 +98,7 @@ class Task extends React.Component<Props, State> {
                             fetch({
                               params: { taskId: task.id },
                               body: { code },
+                              headers: { Authorization: "123456" },
                             })
                           }
                           disabled={isLoading || !code.length}

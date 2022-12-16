@@ -40,12 +40,12 @@ class LazyFetch<E extends Endpoint> extends React.Component<
 
   public fetch: FetchFn<E> = async (request) => {
     const { method, rawUrl, onRequestError, onRequestSuccess } = this.props;
-    const { params, body, query } = request;
+    const { params, body, query, headers } = request;
     const url = createPath(rawUrl, params);
     try {
       this.setState({ isLoading: true });
       const response = await axios(
-        `http://localhost:3000/api${url}${query || ""}`,
+        `http://localhost:8000/api${url}${query || ""}`,
         {
           method,
           data: body ? JSON.stringify(body) : undefined,
@@ -54,6 +54,7 @@ class LazyFetch<E extends Endpoint> extends React.Component<
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
             Accept: "application/json",
+            ...headers,
           },
         }
       );
