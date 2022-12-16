@@ -5,17 +5,36 @@ import LazyFetch from "../../../common/LazyFetch";
 import { Task, TasksEndpoint } from "../../../types";
 import TaskComponent from "./Task";
 
-const tasks: Task[] = [
+const tasks: Task.Lean[] = [
   {
+    id: "1",
     name: "Lorem ipsum",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos labore atque magni cumque nostrum? Est reiciendis nihil sint vitae, ipsa consectetur ut asperiores libero at sunt dolorum quo voluptatum nisi.",
     language: "python",
     unitTests: [{ stdin: "1", stdout: "1" }],
   },
-  { name: "Lorem ipsum", description: "", language: "python", unitTests: [] },
-  { name: "Lorem ipsum", description: "", language: "python", unitTests: [] },
-  { name: "Lorem ipsum", description: "", language: "python", unitTests: [] },
+  {
+    id: "2",
+    name: "Lorem ipsum",
+    description: "",
+    language: "python",
+    unitTests: [],
+  },
+  {
+    id: "3",
+    name: "Lorem ipsum",
+    description: "",
+    language: "python",
+    unitTests: [],
+  },
+  {
+    id: "4",
+    name: "Lorem ipsum",
+    description: "",
+    language: "python",
+    unitTests: [],
+  },
 ];
 class Tasks extends React.Component<Props, State> {
   constructor(props: Props) {

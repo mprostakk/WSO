@@ -1,14 +1,19 @@
 import axios from "axios";
 import express, { Express, Request, Response } from "express";
+import helmet from "helmet";
 import apiRouter from "./api";
 import db from "./db";
+import cors from "cors";
 
 const app: Express = express();
 const port = 3000;
 
 db.run();
 
+app.use(helmet());
 app.use(express.json());
+app.use(cors({ credentials: true, allowedHeaders: "*", origin: "*" }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use("/api", apiRouter);
 

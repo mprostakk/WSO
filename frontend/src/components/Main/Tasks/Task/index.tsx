@@ -11,6 +11,7 @@ class Task extends React.Component<Props, State> {
     super(props);
     this.state = {
       isShowDetails: false,
+      code: "",
     };
   }
 
@@ -21,9 +22,13 @@ class Task extends React.Component<Props, State> {
     this.setState({ isShowDetails: checked });
   };
 
+  private handleEditorChange = (code: string) => {
+    this.setState({ code });
+  };
+
   public render = () => {
     const { task } = this.props;
-    const { isShowDetails } = this.state;
+    const { isShowDetails, code } = this.state;
 
     return (
       <div className={`${this.constructor.name} box`}>
@@ -78,7 +83,8 @@ class Task extends React.Component<Props, State> {
                 <MonacoEditor
                   language={task.language}
                   theme="vs-dark"
-                  value={""}
+                  value={code}
+                  onChange={this.handleEditorChange}
                   options={{}}
                 />
                 <LazyFetch<SolutionsEndpoint.Post>
@@ -89,9 +95,12 @@ class Task extends React.Component<Props, State> {
                       <div>
                         <button
                           onClick={() =>
-                            fetch({ params: { taskId: (task as any).id } })
+                            fetch({
+                              params: { taskId: task.id },
+                              body: { code },
+                            })
                           }
-                          disabled={isLoading}
+                          disabled={isLoading || !code.length}
                         >
                           Solve!
                         </button>
@@ -102,7 +111,7 @@ class Task extends React.Component<Props, State> {
                           ))}
                         </div>
                       </div>
-                      <div>{error?.message}</div>
+                      <div>{error?.response?.data.error || error?.message}</div>
                     </div>
                   )}
                 />

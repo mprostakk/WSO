@@ -6,25 +6,36 @@ type Impossible<K extends keyof any> = {
   [P in K]: never;
 };
 
-export type ResBody<RP extends {} = {}> = {
+export type Entity<T> = T & { id: string };
+
+export type ResBody<P extends {} = {}> = {
   status: "success" | "error";
-  payload: RP;
+  payload?: P;
+  error?: any;
 };
 
+export type EndpointMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+
 export type Endpoint<
-  REQ_PARAMS extends {} = {},
-  REQ_BODY extends {} = {},
-  REQ_QUERY extends {} = {},
-  RES_PAYLOAD extends {} = {},
-  RES_LOCALS extends {} = {}
+  RAW_PATH extends string = string,
+  METHOD extends EndpointMethod = EndpointMethod,
+  REQ_PARAMS extends {} = any,
+  REQ_BODY extends {} = any,
+  REQ_QUERY extends {} = any,
+  RES_PAYLOAD extends {} = any,
+  RES_LOCALS extends {} = any
 > = {
+  rawPath: RAW_PATH;
+  method: METHOD;
   request: Express.Request<
     REQ_PARAMS,
     ResBody<RES_PAYLOAD>,
     REQ_BODY,
     REQ_QUERY
   >;
-  response: Express.Response<ResBody<RES_PAYLOAD>, RES_LOCALS>;
+  response: Express.Response<ResBody<RES_PAYLOAD>, RES_LOCALS> & {
+    body: ResBody<RES_PAYLOAD>;
+  };
 };
 
 export type NoExtraProperties<T, U extends T = T> = U &
@@ -79,8 +90,10 @@ export function Controller(
   descriptor: PropertyDescriptor
 ) {
   const originalMethod: any = descriptor.value;
+  //@ts-ignore
   descriptor.value = async (...args: any[]) => {
     try {
+      //@ts-ignore
       await originalMethod.apply(this, args);
     } catch (error) {
       const [req, res, next] = args;

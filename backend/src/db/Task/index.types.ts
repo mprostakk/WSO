@@ -28,4 +28,6 @@ export namespace Task {
   >;
 
   export type Document = mongoose.HydratedDocument<Task, Methods, Virtuals>;
+
+  export type Lean = Task & Virtuals;
 }

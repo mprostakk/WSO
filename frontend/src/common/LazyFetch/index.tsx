@@ -38,31 +38,34 @@ class LazyFetch<E extends Endpoint> extends React.Component<
     !isLoading && onRequestComplete && onRequestComplete();
   };
 
-  public fetch: FetchFn = async (request) => {
+  public fetch: FetchFn<E> = async (request) => {
     const { method, rawUrl, onRequestError, onRequestSuccess } = this.props;
     const { params, body, query } = request;
     const url = createPath(rawUrl, params);
     try {
       this.setState({ isLoading: true });
-      const response = await axios(`${url}${query || ""}`, {
-        method,
-        data: body ? JSON.stringify(body) : undefined,
-        headers: {
-          credentials: "include",
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      const response = await axios(
+        `http://localhost:3000/api${url}${query || ""}`,
+        {
+          method,
+          data: body ? JSON.stringify(body) : undefined,
+          headers: {
+            credentials: "include",
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
       const { data } = response;
-      this.setState({ data, error: undefined });
+      this.setState({ data, error: undefined, isLoading: false });
       onRequestSuccess && onRequestSuccess(data);
+      return data;
     } catch (error) {
       const axiosError: AxiosError = error as any;
-      this.setState({ error: axiosError, data: undefined });
+      this.setState({ error: axiosError, data: undefined, isLoading: false });
       onRequestError && onRequestError(axiosError);
-    } finally {
-      this.setState({ isLoading: false });
+      return undefined;
     }
   };
 
