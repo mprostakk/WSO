@@ -51,6 +51,17 @@
 
     .content {
       flex-direction: column;
+      gap: 5px;
+
+      .more {
+        justify-content: flex-end;
+
+        button {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+        }
+      }
     }
   }
 }

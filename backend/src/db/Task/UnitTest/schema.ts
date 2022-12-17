@@ -4,7 +4,7 @@ import { UnitTest } from "./index.types";
 const UnitTestSchema: UnitTest.Schema = new mongoose.Schema(
   {
     stdin: { type: String, required: true },
-    stdout: { type: String, required: true },
+    stdout: { type: String, required: true, match: /^(?!\s*$).+/ },
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );

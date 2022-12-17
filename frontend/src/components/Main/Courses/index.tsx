@@ -17,9 +17,9 @@ class Courses extends React.Component<Props, State> {
         </div>
         <div className="items">
           {[
-            { accentColor: "#ffd9a8" },
-            { accentColor: "#fdbc94" },
-            { accentColor: "#fdafaf" },
+            { accentColor: "rgb(255 121 164)" },
+            { accentColor: "rgb(132 158 255)" },
+            { accentColor: "rgb(154 255 174)" },
           ].map(({ accentColor }) => (
             <Course accentColor={accentColor} />
           ))}

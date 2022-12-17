@@ -4,6 +4,10 @@ import { Endpoint } from "../../types";
 import { createPath } from "./helpers";
 import { FetchFn, LazyFetchProps, LazyFetchState } from "./index.types";
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 class LazyFetch<E extends Endpoint> extends React.Component<
   LazyFetchProps<E>,
   LazyFetchState<E>
@@ -43,7 +47,8 @@ class LazyFetch<E extends Endpoint> extends React.Component<
     const { params, body, query, headers } = request;
     const url = createPath(rawUrl, params);
     try {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true, data: undefined, error: undefined });
+      await sleep(500);
       const response = await axios(
         `http://localhost:8000/api${url}${query || ""}`,
         {

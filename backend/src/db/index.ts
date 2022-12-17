@@ -4,7 +4,7 @@ require("custom-env").env(true);
 
 class Database {
   private connection: typeof mongoose | undefined;
-  private readonly mongoUri: string = process.env.DB_URI || ""; // TODO
+  private readonly mongoUri: string = "mongodb://root:example@localhost:27017"; // TODO
 
   constructor() {}
 
@@ -29,6 +29,7 @@ class Database {
       mongoose.connection.on("error", function (err) {
         console.log(err);
       });
+      console.log("[db] Database connected");
     } catch (error) {
       console.error(error);
     }

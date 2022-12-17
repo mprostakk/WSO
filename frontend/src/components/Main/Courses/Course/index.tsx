@@ -1,7 +1,7 @@
 import React from "react";
 import { Props, State } from "./index.types";
 import "./index.scss";
-import X from "../../../../assets/react.svg";
+import X from "../../../../assets/i1.png";
 
 class Course extends React.Component<Props, State> {
   constructor(props: Props) {

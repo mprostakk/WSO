@@ -5,6 +5,8 @@ import apiRouter from "./api";
 import db from "./db";
 import cors from "cors";
 
+require("custom-env").env(true);
+
 const app: Express = express();
 const port = 8000;
 
@@ -38,7 +40,10 @@ app.get("/run", async (req: Request, res: Response) => {
     compile_memory_limit: 100,
     run_memory_limit: 100,
   };
-  const response = await axios.post(`${process.env.PISTON_URI}/api/v2/execute`, data);
+  const response = await axios.post(
+    `${process.env.PISTON_URI}/api/v2/execute`,
+    data
+  );
 
   res.status(200).json({ status: "success", pistonResponse: response.data });
 });

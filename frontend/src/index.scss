@@ -66,26 +66,60 @@ h6 {
   letter-spacing: 0.2px;
 }
 
+progress {
+  accent-color: #6c63ff;
+}
+
+span,
+p {
+  color: #9c9c9c;
+  font-size: 15px;
+}
+
 button,
 label {
-  background: #feda84;
+  background: #6c63ff;
+  color: white;
   border: none;
   padding: 15px 18px;
   border-radius: 10px;
   transition: 0.15s;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-button:hover,
+button:disabled {
+  filter: grayscale(1);
+}
+
+button:not(:disabled):hover,
 label:hover {
   filter: brightness(1.05);
   cursor: pointer;
 }
 
-button:active,
+button:not(:disabled):active,
 label:active {
   transform: scale(0.95);
 }
 
 .box {
   box-shadow: 0px 3px 8px 2px rgb(214 214 214 / 20%);
+}
+
+.spinner {
+  animation: 1s spin infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -21,7 +21,12 @@ class TasksController {
     );
     const tasksWithOneUnitTest = tasks.map((task) => ({
       ...task,
-      unitTests: [task.unitTests[0]],
+      unitTests: [
+        task.unitTests[0],
+        ...task.unitTests
+          .slice(1)
+          .map(({ stdin, stdout }) => ({ stdin: "", stdout: "" })),
+      ],
     }));
 
     res.status(200).json(success({ tasks: tasksWithOneUnitTest }));

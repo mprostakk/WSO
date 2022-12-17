@@ -17,7 +17,9 @@ class Banner extends React.Component<Props, State> {
           <div className="content">
             <h2>Weekly news</h2>
             <span>23,753 Joints</span>
-            <button></button>
+            <div className="more">
+              <button></button>
+            </div>
           </div>
         </div>
       </div>

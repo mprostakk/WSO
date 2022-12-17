@@ -4,7 +4,9 @@ import { AiFillFire } from "react-icons/ai";
 import "./index.scss";
 import MonacoEditor from "react-monaco-editor";
 import LazyFetch from "../../../../common/LazyFetch";
-import { SolutionsEndpoint } from "../../../../types";
+import { Solution, SolutionsEndpoint } from "../../../../types";
+import { ImSpinner2 } from "react-icons/im";
+import Icon from "../../../../assets/t1.png";
 
 class Task extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -26,6 +28,14 @@ class Task extends React.Component<Props, State> {
     this.setState({ code });
   };
 
+  private getIsSolved = (solution: Solution | undefined) => {
+    if (!solution) return false;
+    const isSomeNotPassed = solution?.unitTestsResults.some(
+      ({ isPassed }) => !isPassed
+    );
+    return !isSomeNotPassed;
+  };
+
   public render = () => {
     const { task } = this.props;
     const { isShowDetails, code } = this.state;
@@ -34,7 +44,7 @@ class Task extends React.Component<Props, State> {
       <div className={`${this.constructor.name} box`}>
         <div className="brief">
           <div className="icon">
-            <img src={""} alt={""} />
+            <img src={Icon} />
           </div>
           <div className="name">
             <h4>{task.name}</h4>
@@ -101,14 +111,30 @@ class Task extends React.Component<Props, State> {
                               headers: { Authorization: "123456" },
                             })
                           }
-                          disabled={isLoading || !code.length}
+                          disabled={
+                            isLoading ||
+                            !code.length ||
+                            this.getIsSolved(data?.payload?.solution)
+                          }
                         >
+                          {isLoading && <ImSpinner2 className="spinner" />}
                           Solve!
                         </button>
 
                         <div className="unit-tests-results">
-                          {task.unitTests.map((unitTest) => (
-                            <div className={`unit-test-result`}></div>
+                          {task.unitTests.map((unitTest, idx) => (
+                            <div
+                              className={`unit-test-result ${
+                                data?.payload?.solution.unitTestsResults &&
+                                data?.payload?.solution.unitTestsResults[idx]
+                                  ? data?.payload?.solution.unitTestsResults[
+                                      idx
+                                    ].isPassed
+                                    ? "passed"
+                                    : "not-passed"
+                                  : ""
+                              }`}
+                            ></div>
                           ))}
                         </div>
                       </div>

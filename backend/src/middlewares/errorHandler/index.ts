@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import Express from "express";
 
 const errorHandler = async (
@@ -7,6 +8,7 @@ const errorHandler = async (
   next: Express.NextFunction
 ) => {
   const error = err.message || "Unknown Error";
+  console.log("@", error as AxiosError);
   return res.status(500).json({ status: "error", error });
 };
 
