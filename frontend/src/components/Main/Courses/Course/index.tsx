@@ -19,7 +19,7 @@ class Course extends React.Component<Props, State> {
         <div className="details">
           <h3 className="name">Design Thinking: The Beginner's Guide</h3>
           <div className="progress-info">
-            <progress value="50" max="100"></progress>
+            <progress value="50" max="100" style={{ accentColor }}></progress>
             <div className="details">
               <div className="property">
                 <span className="key">Booked</span>
